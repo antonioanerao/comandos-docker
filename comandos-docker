@@ -13,11 +13,27 @@ docker ps -a
 Ver logs de um container
 docker logs NOME_CONTAINER
 
+Ver logs em tempo real
+docker logs -f NOME_CONTAINER
+
 Rodar um CONTAINER com terminal em background
 docker run -itd --name NOME_CONTAINER NOME_IMAGEM
 
+Iniciar um container parado
+docker start NOME_CONTAINER
+
 Acessar o terminal de um container em execução (exit pra sair)
 docker attach NOME_CONTAINER
+
+Sair do container sem pará-lo
+ctrl + p + q
+
+Sair do container e pará-lo
+exit
+
+Executar comando no container sem acessá-lo
+docker exec NOME_CONTAINER [comando]
+
 
 Remover um container
 docker rm NOME_CONTAINER
@@ -36,3 +52,21 @@ docker image rm -f NOME_IMAGE
 
 Ver consumo de recursos dos containers ativos
 docker stats
+
+Ver consumo de recursos de um determinado container
+docker stats NOME_CONTAINER
+
+Ver informações de containers, imagens e recursos em geral
+docker info
+
+Ver versão do docker (client e server)
+docker version
+
+Copiar arquivo do container para minha pasta local
+docker cp NOME_CONTAINER:CAMINHO_CARQUIVO/NOME_ARQUIVO .
+
+Exemplo de copiar arquivo do container para minha pasta local
+docker cp ubuntu18:/var/www/html/index.php .
+
+Enviar arquivo para o container
+docker cp index.php ubuntu18:/var/www/html/index.php
