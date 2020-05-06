@@ -1,0 +1,38 @@
+Baixar uma imagem e executala em seguida
+docker run -itd --name ubuntu18 ubuntu:18.04
+
+Listar imagens
+docker images
+
+Listar containers em execução
+docker ps
+
+Listar todos os containers
+docker ps -a
+
+Ver logs de um container
+docker logs NOME_CONTAINER
+
+Rodar um CONTAINER com terminal em background
+docker run -itd --name NOME_CONTAINER NOME_IMAGEM
+
+Acessar o terminal de um container em execução (exit pra sair)
+docker attach NOME_CONTAINER
+
+Remover um container
+docker rm NOME_CONTAINER
+
+Inspecionar um container para infos em json
+docker inspect NOME_CONTAINER
+
+Inspecionar determinada info de um container
+docker inspect NOME_CONTAINER | grep INFO_DESEJADA
+
+Exemplo inspect de CONTAINER
+docker inspect NOME_CONTAINER | grep Path
+
+Remover image com container em execução (forçar)
+docker image rm -f NOME_IMAGE
+
+Ver consumo de recursos dos containers ativos
+docker stats
