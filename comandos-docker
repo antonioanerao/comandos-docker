@@ -1,72 +1,105 @@
 Baixar uma imagem e executala em seguida
-docker run -itd --name ubuntu18 ubuntu:18.04
+#docker run -itd --name ubuntu18 ubuntu:18.04
 
 Listar imagens
-docker images
+#docker images
 
 Listar containers em execução
-docker ps
+#docker ps
 
 Listar todos os containers
-docker ps -a
+#docker ps -a
 
 Ver logs de um container
-docker logs NOME_CONTAINER
+#docker logs NOME_CONTAINER
 
 Ver logs em tempo real
-docker logs -f NOME_CONTAINER
+#docker logs -f NOME_CONTAINER
 
 Rodar um CONTAINER com terminal em background
-docker run -itd --name NOME_CONTAINER NOME_IMAGEM
+#docker run -itd --name NOME_CONTAINER NOME_IMAGEM
 
 Iniciar um container parado
-docker start NOME_CONTAINER
+#docker start NOME_CONTAINER
 
 Acessar o terminal de um container em execução (exit pra sair)
-docker attach NOME_CONTAINER
+#docker attach NOME_CONTAINER
 
 Sair do container sem pará-lo
 ctrl + p + q
 
 Sair do container e pará-lo
-exit
+#exit
 
 Executar comando no container sem acessá-lo
-docker exec NOME_CONTAINER [comando]
+#docker exec NOME_CONTAINER [comando]
 
 
 Remover um container
-docker rm NOME_CONTAINER
+#docker rm NOME_CONTAINER
 
 Inspecionar um container para infos em json
-docker inspect NOME_CONTAINER
+#docker inspect NOME_CONTAINER
 
 Inspecionar determinada info de um container
-docker inspect NOME_CONTAINER | grep INFO_DESEJADA
+#docker inspect NOME_CONTAINER | grep INFO_DESEJADA
 
 Exemplo inspect de CONTAINER
-docker inspect NOME_CONTAINER | grep Path
+#docker inspect NOME_CONTAINER | grep Path
 
 Remover image com container em execução (forçar)
-docker image rm -f NOME_IMAGE
+#docker image rm -f NOME_IMAGE
 
 Ver consumo de recursos dos containers ativos
-docker stats
+#docker stats
 
 Ver consumo de recursos de um determinado container
-docker stats NOME_CONTAINER
+#docker stats NOME_CONTAINER
 
 Ver informações de containers, imagens e recursos em geral
-docker info
+#docker info
 
 Ver versão do docker (client e server)
-docker version
+#docker version
 
 Copiar arquivo do container para minha pasta local
-docker cp NOME_CONTAINER:CAMINHO_CARQUIVO/NOME_ARQUIVO .
+#docker cp NOME_CONTAINER:CAMINHO_CARQUIVO/NOME_ARQUIVO .
 
 Exemplo de copiar arquivo do container para minha pasta local
-docker cp ubuntu18:/var/www/html/index.php .
+#docker cp ubuntu18:/var/www/html/index.php .
 
 Enviar arquivo para o container
-docker cp index.php ubuntu18:/var/www/html/index.php
+#docker cp index.php ubuntu18:/var/www/html/index.php
+
+Backup container
+#docker export NOME_CONTAINER | gzip > nome_arquivo.tar.gz
+
+Restaurar backup container (como imagem)
+#zcat export_container.tar.gz | docker import - export_novo
+
+Run em imagem exportada (especificar comando, neste caso é o bash)
+#docker run -it --name container_exportado export_novo bash
+
+Fazer backup de uma imagem (não container como o comando acima)
+#docker save NOME_IMAGEM | gzip -c > NOVO_NOME_IMAGEM.tar.gz
+
+Buscar imagens via cli
+#docker search [palavra-chave]
+
+Buscar imagem usando filtros
+#docker search --filter [filtro] [palavra-chave]
+
+Exemplo busca img com filtro
+#docker search --filter "is-official=true" php
+
+Listar todos os drivers network
+#docker network ls
+
+Inspecionar um determinado driver network
+#docker network inspect bridge
+
+**Bônus** Listar endereços IPs (ipconfig do windows)
+#ip a (pode-se usar um "docker exec NOME_CONTAINER ip a para listar os ips)
+
+Inspecionar docker e pegar IPs com GREP
+#docker inspect NOME_CONTAINER | grep IP
